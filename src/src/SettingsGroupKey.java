@@ -15,6 +15,20 @@ public class SettingsGroupKey implements SettingsKey  {
         keys.add(key);
     }
 
+    @Override
+    public Object getKey() {
+        String ch = "";
+        for(SettingsKey k : keys) {
+            ch += k.getKey();
+        }
+        return ch;
+    }
+
+    @Override
+    public void setKey(Object key) {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -32,5 +46,13 @@ public class SettingsGroupKey implements SettingsKey  {
         }
 
         return ch;
+    }
+
+    public List<SettingsKey> getKeys() {
+        return keys;
+    }
+
+    public void setKeys(List<SettingsKey> keys) {
+        this.keys = keys;
     }
 }

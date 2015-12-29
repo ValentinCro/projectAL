@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
     — demander le chargement de l’ensemble des réglages à partir d’un fichier,
@@ -12,9 +13,9 @@ import java.util.ArrayList;
 */
 public interface Reader {
 
-    ArrayList<SettingsKey> getSettings() throws FileNotFoundException;
+    ArrayList<SettingsKey> getSettings();
 
-    SettingsKey getKey(SettingsKey key);
+    Object getKeyBySettingKey(String key);
 
-    SettingsKey getKey(SettingsGroupKey key);
+    Object getKeyByGroupKey(String key);
 }

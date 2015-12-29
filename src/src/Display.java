@@ -1,5 +1,8 @@
-/**
- * Created by valentin on 28/12/2015.
- */
+
 public class Display {
+    public static void main(String []args) {
+        OnlyRead read = new ConcretOnlyRead("settings.json");
+
+        read.getSettings();
+    }
 }

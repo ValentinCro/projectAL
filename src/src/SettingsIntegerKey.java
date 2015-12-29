@@ -9,12 +9,12 @@ public class SettingsIntegerKey implements SettingsKey {
         this.key = key;
     }
 
-    public Integer getKey() {
+    public Object getKey() {
         return key;
     }
 
-    public void setKey(Integer key) {
-        this.key = key;
+    public void setKey(Object key) {
+        this.key = Integer.getInteger(key.toString());
     }
 
     public String getName() {

@@ -1,5 +1,7 @@
-/**
- * Created by valentin on 28/12/2015.
- */
+import java.util.ArrayList;
+
 public interface ReadAndWrite {
+    void getSettings();
+
+    void save(ArrayList<SettingsKey> keys);
 }

@@ -9,12 +9,12 @@ public class SettingsStringKey implements SettingsKey {
         this.key = key;
     }
 
-    public String getKey() {
+    public Object getKey() {
         return key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setKey(Object key) {
+        this.key = key.toString();
     }
 
     public String getName() {

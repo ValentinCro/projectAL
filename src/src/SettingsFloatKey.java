@@ -1,20 +1,20 @@
 
 public class SettingsFloatKey implements SettingsKey {
 
-    private float key;
+    private Double key;
     private String name;
 
-    public SettingsFloatKey(String name, float key) {
+    public SettingsFloatKey(String name, Double key) {
         this.name = name;
         this.key = key;
     }
 
-    public float getKey() {
+    public Object getKey() {
         return key;
     }
 
-    public void setKey(float key) {
-        this.key = key;
+    public void setKey(Object key) {
+        this.key = Double.valueOf(key.toString());
     }
 
     public String getName() {
