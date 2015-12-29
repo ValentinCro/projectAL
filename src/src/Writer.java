@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /*
     — demander la sauvegarde de l’ensemble des réglages vers un fichier,
@@ -13,9 +14,9 @@ public interface Writer {
 
     void save(ArrayList<SettingsKey> keys);
 
-    boolean addKey(SettingsKey key);
+    void addKey(List<SettingsKey> keys, String key);
 
-    boolean removeValue(SettingsKey key);
+    boolean removeValue(List<SettingsKey> keys, String key);
 
-    boolean removeGroup(SettingsGroupKey key);
+    boolean removeGroup(List<SettingsKey> keys, String key);
 }

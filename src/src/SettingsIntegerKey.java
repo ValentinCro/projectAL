@@ -14,7 +14,7 @@ public class SettingsIntegerKey implements SettingsKey {
     }
 
     public void setKey(Object key) {
-        this.key = Integer.getInteger(key.toString());
+        this.key = Integer.valueOf(key.toString());
     }
 
     public String getName() {
@@ -26,7 +26,7 @@ public class SettingsIntegerKey implements SettingsKey {
     }
 
     @Override
-    public String print() {
-        return name + " " + key + "\n";
+    public String print(String tab) {
+        return tab + name + " " + key + "\n";
     }
 }

@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -7,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 public class ReaderJSON implements Reader {
     private String fileName;
@@ -70,24 +68,53 @@ public class ReaderJSON implements Reader {
     }
 
     @Override
-    public Object getKeyBySettingKey(String key) {
-        ArrayList<SettingsKey> keys = getSettings();
-        for (SettingsKey k : keys) {
-            if (k.getName().equals(key)) {
-                return k.getKey();
+    public Object getValueBySettingKey(List<SettingsKey> keys, String key) {
+        String [] splited = key.split("\\.");
+        String [] var = splited[splited.length - 1].split(" ");
+        Object value = null;
+        if (splited.length > 1) {
+            SettingsGroupKey sgk = new SettingsGroupKey("");
+            sgk.setKeys(keys);
+            for (int cpt = 0; cpt < splited.length; cpt++) {
+                for (SettingsKey k : sgk.getKeys()) {
+                    if (cpt < splited.length - 1) {
+                        if (k.getName().equals(splited[cpt])) {
+                            sgk = (SettingsGroupKey) k;
+                        }
+                    } else {
+                        if (k.getName().equals(var[0])) {
+                            value = k.getKey();
+                        }
+                    }
+                }
+            }
+        } else {
+            for (SettingsKey k : keys) {
+                if (k.getName().equals(var[0])) {
+                    value = k.getKey();
+                }
             }
         }
-        return null;
+        return value;
     }
 
     @Override
-    public Object getKeyByGroupKey(String key) {
-        ArrayList<SettingsKey> keys = getSettings();
-        for (SettingsKey k : keys) {
-            if (k.getName().equals(key)) {
-                return k.getKey();
+    public SettingsKey getKeyByGroupKey(List<SettingsKey> keys, String key) {
+        String [] splited = key.split("\\.");
+        SettingsKey value = null;
+        SettingsGroupKey sgk = new SettingsGroupKey("");
+        sgk.setKeys(keys);
+        for (int cpt = 0; cpt < splited.length; cpt++) {
+            for (SettingsKey k : sgk.getKeys()) {
+                if (k.getName().equals(splited[cpt])) {
+                    if (cpt < splited.length - 1) {
+                    sgk = (SettingsGroupKey) k;
+                    } else {
+                        value = k;
+                    }
+                }
             }
         }
-        return null;
+        return value;
     }
 }

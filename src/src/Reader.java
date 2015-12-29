@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /*
@@ -15,7 +16,7 @@ public interface Reader {
 
     ArrayList<SettingsKey> getSettings();
 
-    Object getKeyBySettingKey(String key);
+    Object getValueBySettingKey(List<SettingsKey> keys, String key);
 
-    Object getKeyByGroupKey(String key);
+    SettingsKey getKeyByGroupKey(List<SettingsKey> keys, String key);
 }

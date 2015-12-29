@@ -38,11 +38,11 @@ public class SettingsGroupKey implements SettingsKey  {
     }
 
     @Override
-    public String print() {
-        String ch = name + ".";
+    public String print(String tab) {
+        String ch = tab + name + "\n";
 
         for(SettingsKey key : keys) {
-            ch += key.print();
+            ch += tab + key.print("\t");
         }
 
         return ch;

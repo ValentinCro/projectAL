@@ -11,7 +11,7 @@ public class ConcretOnlyRead implements OnlyRead {
     @Override
     public void getSettings() {
         for (SettingsKey key : reader.getSettings()) {
-            System.out.print(key.print());
+            System.out.print(key.print(""));
         }
     }
 }

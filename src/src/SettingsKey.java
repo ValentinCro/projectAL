@@ -9,5 +9,5 @@ public interface SettingsKey {
 
     void setName(String name);
 
-    String print();
+    String print(String tab);
 }
