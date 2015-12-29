@@ -23,9 +23,9 @@ public class Demo {
         System.out.println("maxIter vaut : " + raw.getValueBySettingKey(keys, "calcul.algo1.maxIter2"));
         System.out.println("algo1 : " + raw.getKeyByGroupKey(keys, "calcul").getName());
 
-        System.out.println("Modifification de calcul.algo1.maxIter à 5 et ajout de Iter");
-        raw.addKey(keys, "calcul.algo1.maxIter 5");
-        raw.addKey(keys, "Iter test");
+        System.out.println("Modifification de calcul.algo1.maxIter à 5.0 et ajout de Iter");
+        raw.addKey(keys, "calcul.algo1.maxIter 5.0");
+        raw.addKey(keys, "Iter 5.0");
 
         for(SettingsKey sk : keys) {
             System.out.println(sk.print(""));

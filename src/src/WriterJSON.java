@@ -59,23 +59,25 @@ public class WriterJSON implements Writer {
 
     @Override
     public void addKey(List<SettingsKey> keys, String key) {
-        String [] splited = key.split("\\.");
-        String [] var = splited[splited.length - 1].split(" ");
+        String [] var = key.split(" ");
+        String [] splited = var[0].split("\\.");
+        var[0] = splited[splited.length - 1];
         boolean find = false;
         if (splited.length > 1) {
             SettingsGroupKey sgk = new SettingsGroupKey("");
             sgk.setKeys(keys);
             for (int cpt = 0; cpt < splited.length; cpt++) {
                 find = false;
-                for (SettingsKey k : sgk.getKeys()) {
+                for (int cpt2 = 0; cpt2 < sgk.getKeys().size(); cpt2++) {
                     if (cpt < splited.length - 1) {
-                        if (k.getName().equals(splited[cpt])) {
-                            sgk = (SettingsGroupKey) k;
+                        if (sgk.getKeys().get(cpt2).getName().equals(splited[cpt])) {
+                            sgk = (SettingsGroupKey) sgk.getKeys().get(cpt2);
                         }
                         find = true;
                     } else {
-                        if (k.getName().equals(var[0])) {
-                            k.setKey(var[1]);
+                        if (sgk.getKeys().get(cpt2).getName().equals(var[0])) {
+                            sgk.getKeys().remove(sgk.getKeys().get(cpt2));
+                            sgk.addKey(createKey(var[0], var[1]));
                             find = true;
                         }
                     }
@@ -93,19 +95,7 @@ public class WriterJSON implements Writer {
                         sgk.addKey(tmp);
                         sgk = tmp;
                     } else {
-                        try
-                        {
-                            sgk.addKey(new SettingsIntegerKey(var[0], Integer.parseInt(var[1])));
-                        }
-                        catch(NumberFormatException e)
-                        {
-                            try {
-                                sgk.addKey(new SettingsFloatKey(var[0], Double.parseDouble(var[1])));
-                            } catch(NumberFormatException q) {
-                                sgk.addKey(new SettingsStringKey(var[0], var[1]));
-                            }
-
-                        }
+                        sgk.addKey(createKey(var[0], var[1]));
                     }
                 }
             }
@@ -117,19 +107,7 @@ public class WriterJSON implements Writer {
                 }
             }
             if (!find) {
-                try
-                {
-                    keys.add(new SettingsIntegerKey(var[0], Integer.parseInt(var[1])));
-                }
-                catch(NumberFormatException e)
-                {
-                    try {
-                        keys.add(new SettingsFloatKey(var[0], Double.parseDouble(var[1])));
-                    } catch(NumberFormatException q) {
-                        keys.add(new SettingsStringKey(var[0], var[1]));
-                    }
-
-                }
+                keys.add(createKey(var[0], var[1]));
             }
         }
     }
@@ -183,5 +161,23 @@ public class WriterJSON implements Writer {
             }
         }
         return find;
+    }
+
+    private SettingsKey createKey(String name, Object value) {
+        SettingsKey sg = null;
+        try
+        {
+            sg = new SettingsIntegerKey(name, Integer.parseInt(value.toString()));
+        }
+        catch(NumberFormatException e)
+        {
+            try {
+                sg = new SettingsFloatKey(name, Double.parseDouble(value.toString()));
+            } catch(NumberFormatException q) {
+                sg = new SettingsStringKey(name, value.toString());
+            }
+
+        }
+        return sg;
     }
 }
