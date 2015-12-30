@@ -28,7 +28,8 @@ public class WriterJSON implements Writer {
         }
         String save = "";
         for (int cpt = 0; cpt < JSONkeys.size(); cpt++) {
-            save += JSONkeys.get(cpt).toString();
+            String ch = JSONkeys.get(cpt).toString().substring(1, JSONkeys.get(cpt).toString().length()-1);
+            save += ch;
             if (cpt + 1 < JSONkeys.size()) {
                 save += ",\n";
             }
@@ -37,7 +38,7 @@ public class WriterJSON implements Writer {
         try {
             FileWriter fw  = new FileWriter(fileName);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(save);
+            bw.write("{" + save + "}");
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -63,6 +64,7 @@ public class WriterJSON implements Writer {
         String [] splited = var[0].split("\\.");
         var[0] = splited[splited.length - 1];
         boolean find = false;
+        int i = 0;
         if (splited.length > 1) {
             SettingsGroupKey sgk = new SettingsGroupKey("");
             sgk.setKeys(keys);
@@ -72,8 +74,9 @@ public class WriterJSON implements Writer {
                     if (cpt < splited.length - 1) {
                         if (sgk.getKeys().get(cpt2).getName().equals(splited[cpt])) {
                             sgk = (SettingsGroupKey) sgk.getKeys().get(cpt2);
+                            i++;
+                            find = true;
                         }
-                        find = true;
                     } else {
                         if (sgk.getKeys().get(cpt2).getName().equals(var[0])) {
                             sgk.getKeys().remove(sgk.getKeys().get(cpt2));
@@ -87,9 +90,8 @@ public class WriterJSON implements Writer {
                 }
             }
             if (!find) {
-                sgk = new SettingsGroupKey(splited[0]);
-                keys.add(sgk);
-                for (int cpt = 1; cpt < splited.length; cpt++) {
+                System.out.print(i);
+                for (int cpt = i; cpt < splited.length; cpt++) {
                     if (cpt < splited.length - 1) {
                         SettingsGroupKey tmp = new SettingsGroupKey(splited[cpt]);
                         sgk.addKey(tmp);
