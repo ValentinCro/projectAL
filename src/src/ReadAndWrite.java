@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ReadAndWrite {
-    void getSettings();
+    public ArrayList<SettingsKey> getSettings();
 
     void save(ArrayList<SettingsKey> keys);
 

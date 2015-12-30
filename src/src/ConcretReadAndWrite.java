@@ -12,10 +12,8 @@ public class ConcretReadAndWrite implements ReadAndWrite {
     }
 
     @Override
-    public void getSettings() {
-        for (SettingsKey key : reader.getSettings()) {
-            System.out.print(key.print(""));
-        }
+    public ArrayList<SettingsKey> getSettings() {
+        return reader.getSettings();
     }
 
     @Override
