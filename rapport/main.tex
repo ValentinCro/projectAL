@@ -72,7 +72,7 @@
 		\item La partie façade, qui se charge de faire la liaison entre la partie test et la partie gestionnaire de paramètre.
 		\item La partie gestionnaire de paramètre qui comporte deux sous-parties :
 		\begin{itemize}
-			\item La partie d'écriture/lecture des paramètre
+			\item La partie d'écriture/lecture des paramètres
 			\item La partie gestion des clés
 		\end{itemize}
 	\end{itemize}
@@ -82,13 +82,13 @@
 	
 	\subsection{La partie façade}
 
-	Comme sont nom l'indique cette partie utilise le patron façade afin de "cacher" le fonctionnement des autres parties, de faciliter l'accès au sous système et permet aussi de fournir seulement les classes nécessaire à l'exécution du client.
+	Comme sont nom l'indique cette partie utilise le patron façade afin de "cacher" le fonctionnement des autres parties, de faciliter l'accès au sous système et permet aussi de fournir seulement les classes nécessaires à l'exécution du client.
 	
 	\paragraph{}
-	Le client ne sachant pas comment fonctionne le sous système, il est tout à fait possible de modifier son fonctionnement (sans changer le résultat) sans paralyser le client, par exemple si l'on veut optimiser le sous système ou changer de format d'enregistrement des paramètres. Les  méthode appelé par le client redirige vers les méthodes du sous système désiré. Cela donne une certaine modularité au sous système.
+	Le client ne sachant pas comment fonctionne le sous système, il est tout à fait possible de modifier son fonctionnement (sans changer le résultat) sans paralyser le client, par exemple si l'on veut optimiser le sous système ou changer de format d'enregistrement des paramètres. Les méthodes appelées par le client sont des redirections vers les méthodes du sous système désirées. Cela donne une certaine modularité au sous système.
 	
 	\paragraph{}
-	Le patron façade permet de faciliter l'accès au sous système, celui-ci n'est pas compliqué d'accès, cependant en prévention d'une évolution (en taille mais aussi en complexité). Nous avons jugée que le coup de cette implémentation été minime par rapport aux gains quelle pourrait apporter.
+	Le patron façade permet de faciliter l'accès au sous système, celui-ci n'est pas compliqué d'accès, cependant en prévention d'une évolution (en taille mais aussi en complexité). Nous avons jugé que le coup de cette implémentation été minime par rapport aux gains quelle pourrait apporter.
 	
 	\paragraph{}
 	Le patron a aussi permis de donner au client l'accès au seul classe qui lui est nécessaire pour son bon fonctionnement. Nous avons donc mis en place deux façades, chaque façade est formée par un couple interface/classe, un couple permettant seulement la "lecture seule" des réglages et couple permettant la lecture et l'écriture. Il serais tout à fait possible de rajouter un troisième couple permettant seulement l'écriture. Cela cloisonne l'accès aux classes et évite de fournir au client plus que nécessaire à son bon fonctionnement. 
@@ -96,22 +96,22 @@
 	\newpage
 	\subsection{La partie gestionnaire de paramètre}
 	
-	Pour cette partie il fallait avoir une modularité assez importante afin que l'application puisse évoluer le plus facilement possible, c'est-à-dire limité le nombre de modification de l'existant au stricte minimum.
+	Pour cette partie il fallait avoir une modularité assez importante afin que l'application puisse évoluer le plus facilement possible, c'est-à-dire limiter le nombre de modification de l'existant au stricte minimum.
 	
 	\subsubsection{La partie lecture/écriture}
 	
-		Pour cette partie nous avons mis en place un patron proche du patron pont, dans son principe, c'est-à-dire le découplage de la partie lecture/écriture. Cela permet au deux parties d'évoluer de manière indépendantes, et d'ajouter un lecteur sans forcément ajouter d'écrivain et inversement. Cela permet aussi de faciliter le changement du type de sauvegarde des réglage (XML, XHTML ...). De plus nous avons mis en place une interface permettant aux classes plus haut niveau de manipuler des Reader et Writer sans savoir si ils s'agit de ReaderJSON ou ReaderXML par exemple. Il est donc simple de changer de format de sauvegarde.
+		Pour cette partie nous avons mis en place un patron proche du patron pont, dans son principe, c'est-à-dire le découplage de la partie lecture/écriture. Cela permet au deux parties d'évoluer de manière indépendantes, et d'ajouter un lecteur sans forcément ajouter d'écrivain et inversement. Cela permet aussi de faciliter le changement du type de sauvegarde des réglage (XML, XHTML ...). De plus nous avons mis en place une interface permettant aux classes plus haut niveau de manipuler des Reader et Writer sans savoir si il s'agit de ReaderJSON ou ReaderXML par exemple. Il est donc simple de changer de format de sauvegarde.
 		
 	\subsubsection{La partie gestion des clés}
 	
-		Pour cette partie nous avons utilisé la patron composite. En effet les clés de paramètre étant découpé en deux (des clés de groupe et des clés de valeur), une clés de groupe peut contenir une autre clé de groupe ou une clé de valeur, cela correspond parfaitement au patron composite. Les clé de valeur sont donc considéré comme des feuilles et les clé de groupe comme des component. Ce patron permet au système de traiter ces deux types de clé de la même manière. Ainsi chaque clé connais la façon de s'afficher en interne ce qui simplifie l'affichage des réglages.
+		Pour cette partie nous avons utilisé la patron composite. En effet les clés de paramètre étant découpées en deux (des clés de groupe et des clés de valeur), une clé de groupe peut contenir une autre clé de groupe ou une clé de valeur, cela correspond parfaitement au patron composite. Les clés de valeur sont donc considérées comme des feuilles et les clés de groupe comme des component. Ce patron permet au système de traiter ces deux types de clé de la même manière. Ainsi chaque clés connais la façon de s'afficher en interne ce qui simplifie l'affichage des réglages.
 \section{Fonctions implémentées}
 \label{sec:fonctions_impl}
 
 \begin{itemize}
-	\item Demander le chargement de l’ensemble des réglages à partir d’un fichier,
-	\item Demander la sauvegarde de l’ensemble des réglages vers un fichier,
-	\item Obtenir une valeur à partir à partir de sa clé de réglage,
+	\item Demander le chargement de l’ensemble des réglages à partir d’un fichier.
+	\item Demander la sauvegarde de l’ensemble des réglages vers un fichier.
+	\item Obtenir une valeur à partir à partir de sa clé de réglage.
 	\item Ajouter ou modifier une valeur à partir à partir de sa clé de réglage et d’une nouvelle valeur,
 	\item Supprimer une valeur à partir à partir de sa clé de réglage,
 	\item Obtenir une référence à un groupe à partir sa clé de groupe,
