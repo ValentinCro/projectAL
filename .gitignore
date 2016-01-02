@@ -13,3 +13,6 @@ hs_err_pid*
 
 src/.idea
 src/*.iml
+*.log
+*.gz
+rapport/main.pdf
