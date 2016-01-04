@@ -26,7 +26,7 @@ public class SettingsStringKey implements SettingsKey {
     }
 
     @Override
-    public String print(String tab) {
+    public String toString(String tab) {
         return tab + name + " = " + key + "(String)\n";
     }
 }

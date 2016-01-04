@@ -26,7 +26,7 @@ public class SettingsFloatKey implements SettingsKey {
     }
 
     @Override
-    public String print(String tab) {
+    public String toString(String tab) {
         return tab + name + " = " + key + " (Float)\n";
     }
 }
