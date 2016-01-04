@@ -29,10 +29,12 @@ public class SettingsGroupKey implements SettingsKey  {
 
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

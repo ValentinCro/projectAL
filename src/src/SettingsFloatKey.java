@@ -9,18 +9,22 @@ public class SettingsFloatKey implements SettingsKey {
         this.key = key;
     }
 
+    @Override
     public Object getKey() {
         return key;
     }
 
+    @Override
     public void setKey(Object key) {
         this.key = Double.valueOf(key.toString());
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
