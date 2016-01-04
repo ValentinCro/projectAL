@@ -12,12 +12,12 @@ public class ConcretReadAndWrite implements ReadAndWrite {
     }
 
     @Override
-    public ArrayList<SettingsKey> getSettings() {
+    public List<SettingsKey> getSettings() {
         return reader.getSettings();
     }
 
     @Override
-    public void save(ArrayList<SettingsKey> keys) {
+    public void save(List<SettingsKey> keys) {
         writer.save(keys);
     }
 

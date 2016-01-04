@@ -15,7 +15,7 @@ public class ReaderJSON implements Reader {
     }
 
     @Override
-    public ArrayList<SettingsKey> getSettings() {
+    public List<SettingsKey> getSettings() {
         ArrayList<SettingsKey> keys = new ArrayList<>();
 
         String text = "";
@@ -43,7 +43,12 @@ public class ReaderJSON implements Reader {
         return keys;
     }
 
-    private ArrayList<SettingsKey> parseJSON(JSONObject obj) {
+    /**
+     * Recursive method to read the JSONObject
+     * @param obj
+     * @return a List who containe the JSONObject convert to settingKeys
+     */
+    private List<SettingsKey> parseJSON(JSONObject obj) {
         ArrayList<SettingsKey> keys = new ArrayList<>();
         for (String key : obj.keySet()) {
             if (obj.optInt(key, -1) != -1) {
@@ -54,7 +59,7 @@ public class ReaderJSON implements Reader {
                 if (obj.optJSONObject(key) != null) {
                     JSONObject object = obj.optJSONObject(key);
                     SettingsGroupKey gk = new SettingsGroupKey(key);
-                    ArrayList<SettingsKey> tmp = parseJSON(object);
+                    List<SettingsKey> tmp = parseJSON(object);
                     for(SettingsKey k : tmp) {
                         gk.addKey(k);
                     }

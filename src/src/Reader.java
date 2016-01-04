@@ -1,7 +1,4 @@
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /*
     — demander le chargement de l’ensemble des réglages à partir d’un fichier,
@@ -13,10 +10,27 @@ import java.util.Objects;
     — accéder à un groupe ou une valeur de manière relative, c’est à dire à partir d’un autre groupe,
 */
 public interface Reader {
+    /**
+     * Return a list with all settings
+     * @return
+     */
+    List<SettingsKey> getSettings();
 
-    ArrayList<SettingsKey> getSettings();
-
+    /**
+     * @param keys
+     * @param key
+     * @return the value of the key specified
+     * the key is specified by the way of acces
+     * exemple : calcul.algo1.maxIter
+     */
     Object getValueBySettingKey(List<SettingsKey> keys, String key);
 
+    /**
+     * @param keys
+     * @param key
+     * @return the group key specified
+     * the key is specified by the way of acces
+     * exemple : calcul.algo1
+     */
     SettingsKey getKeyByGroupKey(List<SettingsKey> keys, String key);
 }
