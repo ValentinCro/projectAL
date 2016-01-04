@@ -5,13 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Edit {
 
     private JFrame mainFrame;
     private JTree table;
     private ReadAndWrite raw;
-    private ArrayList<SettingsKey> keys;
+    private List<SettingsKey> keys;
     private JButton createKey;
     private JButton removeKey;
     private JButton save;
@@ -99,12 +100,12 @@ public class Edit {
         mainFrame.setVisible(true);
     }
 
-    public DefaultMutableTreeNode initSetting(ArrayList<SettingsKey> keys) {
+    public DefaultMutableTreeNode initSetting(List<SettingsKey> keys) {
         DefaultMutableTreeNode r = new DefaultMutableTreeNode("Settings");
         for ( SettingsKey k : keys) {
             if (k.getClass() == SettingsGroupKey.class) {
                 DefaultMutableTreeNode f = new DefaultMutableTreeNode(k.getName());
-                ArrayList<DefaultMutableTreeNode> childs = child((SettingsGroupKey) k);
+                List<DefaultMutableTreeNode> childs = child((SettingsGroupKey) k);
                 for (DefaultMutableTreeNode ch : childs) {
                     f.add(ch);
                 }
@@ -116,12 +117,12 @@ public class Edit {
         return r;
     }
 
-    public ArrayList<DefaultMutableTreeNode> child(SettingsGroupKey father) {
-        ArrayList<DefaultMutableTreeNode> childes = new ArrayList<>();
+    public List<DefaultMutableTreeNode> child(SettingsGroupKey father) {
+        List<DefaultMutableTreeNode> childes = new ArrayList<>();
         for ( SettingsKey k : father.getKeys()) {
             if (k.getClass() == SettingsGroupKey.class) {
                 DefaultMutableTreeNode f = new DefaultMutableTreeNode(k.getName());
-                ArrayList<DefaultMutableTreeNode> childs = child((SettingsGroupKey) k);
+                List<DefaultMutableTreeNode> childs = child((SettingsGroupKey) k);
                 for (DefaultMutableTreeNode ch : childs) {
                     f.add(ch);
                 }
