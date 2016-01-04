@@ -1,3 +1,4 @@
+
 /**
  * Interface SettingsKey define a contract about the usability of keys, regardless of their type.
  * @see SettingsFloatKey
