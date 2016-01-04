@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Demo {
     public static void main(String [] args) {
         ReadAndWrite raw = new ConcretReadAndWrite("settings.json");
-        ArrayList<SettingsKey> keys = new ArrayList<>();
+        List<SettingsKey> keys = new ArrayList<>();
 
         SettingsGroupKey calcul = new SettingsGroupKey("calcul");
         SettingsGroupKey algo1 = new SettingsGroupKey("algo1");
