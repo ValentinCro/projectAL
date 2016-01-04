@@ -14,6 +14,10 @@ public class WriterJSON implements Writer {
         this.fileName = fileName;
     }
 
+    /**
+     * @param keys
+     * Save All list's settings
+     */
     @Override
     public void save(List<SettingsKey> keys) {
         ArrayList<JSONObject> JSONkeys = new ArrayList<>();
@@ -63,6 +67,14 @@ public class WriterJSON implements Writer {
         return obj;
     }
 
+    /**
+     * @param keys
+     * @param key
+     * Add a key to the List
+     * The keys is specified by a way
+     * exemple calcul.algo1.maxIter value
+     * If the key already exist it modified the existing key
+     */
     @Override
     public void addKey(List<SettingsKey> keys, String key) {
         String [] var = key.split(" ");

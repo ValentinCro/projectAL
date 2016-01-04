@@ -11,8 +11,8 @@ import java.util.List;
 */
 public interface Writer {
     /**
-     * Save All list's settings
      * @param keys
+     * Save All list's settings
      */
     void save(List<SettingsKey> keys);
 
