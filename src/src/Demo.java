@@ -17,29 +17,29 @@ public class Demo {
         raw.save(keys);
 
         for(SettingsKey sk : keys) {
-            System.out.println(sk.print(""));
+            System.out.println(sk.toString(""));
         }
 
         System.out.println("maxIter vaut : " + raw.getValueBySettingKey(keys, "calcul.algo1.maxIter2"));
         System.out.println("algo1 : " + raw.getKeyByGroupKey(keys, "calcul").getName());
 
-        System.out.println("Modifification de calcul.algo1.maxIter à 5.0 et ajout de Iter");
+        System.out.println("Modifification de calcul.algo1.maxIter ï¿½ 5.0 et ajout de Iter");
         raw.addKey(keys, "calcul.algo1.maxIter 5.0");
         raw.addKey(keys, "Iter 5.0");
 
         for(SettingsKey sk : keys) {
-            System.out.println(sk.print(""));
+            System.out.println(sk.toString(""));
         }
 
         System.out.println("Suppression de maxIter2 : " + raw.removeKey(keys, "calcul.algo1.maxIter2"));
         System.out.println("Suppression de Iter : " + raw.removeKey(keys, "Iter"));
         for(SettingsKey sk : keys) {
-            System.out.println(sk.print(""));
+            System.out.println(sk.toString(""));
         }
 
         System.out.println("Suppression du groupe calcul : " + raw.removeKey(keys, "calcul"));
         for(SettingsKey sk : keys) {
-            System.out.println(sk.print(""));
+            System.out.println(sk.toString(""));
         }
     }
 }

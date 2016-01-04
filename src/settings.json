@@ -1,6 +1,1 @@
-{"testse":8,
-"test":5,
-"ae":{"testaz":5},
-"calcul":{"test":5,"algoze":{"testaz":5},"algo1":{"test":5,"maxIter":3,"maxde":5,"maxIter2":3},"algo":{"testaz":5}},
-"testa":6,
-"algo":{"testaz":5}}
+{"calcul":{"algo1":{"maxIter":3,"maxIter2":3}}}
