@@ -21,6 +21,7 @@ public class ConcretReadAndWrite implements ReadAndWrite {
         writer.save(keys);
     }
 
+    @Override
     public void addKey(List<SettingsKey> keys, String key) {
         writer.addKey(keys, key);
     }
@@ -30,6 +31,7 @@ public class ConcretReadAndWrite implements ReadAndWrite {
         return writer.removeValue(keys, key);
     }
 
+    @Override
     public boolean removeGroup(List<SettingsKey> keys, String key) {
         return writer.removeGroup(keys, key);
     }

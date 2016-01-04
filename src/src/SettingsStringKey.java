@@ -9,18 +9,22 @@ public class SettingsStringKey implements SettingsKey {
         this.key = key;
     }
 
+    @Override
     public Object getKey() {
         return key;
     }
 
+    @Override
     public void setKey(Object key) {
         this.key = key.toString();
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
