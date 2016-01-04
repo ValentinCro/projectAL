@@ -15,7 +15,7 @@ public class WriterJSON implements Writer {
     }
 
     @Override
-    public void save(ArrayList<SettingsKey> keys) {
+    public void save(List<SettingsKey> keys) {
         ArrayList<JSONObject> JSONkeys = new ArrayList<>();
         for (SettingsKey key : keys) {
             JSONObject obj = new JSONObject();
@@ -46,6 +46,11 @@ public class WriterJSON implements Writer {
         }
     }
 
+    /**
+     * Recursive method to convert the List to an JSONObject
+     * @param keys
+     * @return a JSONObject who containe all SettingKeys
+     */
     private JSONObject parseKey(List<SettingsKey> keys) {
         JSONObject obj = new JSONObject();
         for (SettingsKey key : keys) {

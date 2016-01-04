@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -11,12 +10,39 @@ import java.util.List;
     — supprimer un groupe à partir sa clé de groupe,
 */
 public interface Writer {
+    /**
+     * Save All list's settings
+     * @param keys
+     */
+    void save(List<SettingsKey> keys);
 
-    void save(ArrayList<SettingsKey> keys);
-
+    /**
+     * @param keys
+     * @param key
+     * Add a key to the List
+     * The keys is specified by a way
+     * exemple calcul.algo1.maxIter value
+     * If the key already exist it modified the existing key
+     */
     void addKey(List<SettingsKey> keys, String key);
 
+    /**
+     * @param keys
+     * @param key
+     * @return if the operation work
+     * Remove a key to the List
+     * The keys is specified by a way
+     * exemple calcul.algo1.maxIter
+     */
     boolean removeValue(List<SettingsKey> keys, String key);
 
+    /**
+     * @param keys
+     * @param key
+     * @return  if the operation work
+     * Add a group key to the List
+     * The keys is specified by a way
+     * exemple calcul.algo1
+     */
     boolean removeGroup(List<SettingsKey> keys, String key);
 }
