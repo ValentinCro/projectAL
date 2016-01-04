@@ -16,3 +16,5 @@ src/*.iml
 *.log
 *.gz
 rapport/main.pdf
+*.aux
+*.toc
